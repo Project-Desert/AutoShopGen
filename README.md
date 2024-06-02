@@ -1,5 +1,5 @@
 # AutoShopGen
-
+Don't mind why generateShopJson is written HORRIBLY
 ## how to run
 
 1.) install nodejs

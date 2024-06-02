@@ -1,0 +1,1 @@
+node generateDaily.js

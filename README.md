@@ -8,6 +8,11 @@ Don't mind why generateShopJson is written HORRIBLY
 
 3.) run either `node generateDaily` or `node generateFeatured`
 
+## problems
+
+I'm not fixing problems myself, just rerun the file if it errors.
+If you want to fix my horrible code (or make it readable), go right ahead.
+
 ## info
 
 generateFeatured just generates skins

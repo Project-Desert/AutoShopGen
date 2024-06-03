@@ -55,12 +55,13 @@ daily.push(dailyDump[3].toString().split("      ")[0]);
 daily.push(dailyDump[4].toString().split("      ")[0]);
 daily.push(dailyDump[5].toString().split("      ")[0]);
 
-newJson.featured1 = {}; newJson.featured1.itemGrants = featured[0];
+newJson.featured1 = {}; newJson.featured1.itemGrants = [featured[0]];
 xhrF1.open("GET", "https://fortnite-api.com/v2/cosmetics/br/search/all?id="+featured[0]);
 xhrF1.send();
 xhrF1.onload = () => {
     if (xhrF1.readyState == 4 && xhrF1.status == 200) {
         const data = JSON.parse(xhrF1.response);
+        newJson.featured1.itemGrants = [data.data[0].type.backendValue+":"+featured[0]]
         console.log(data.data[0].type.value);
         console.log(featuredDump[0].toString().split("       ")[1]);
         newJson.featured1.price = prices[typeIdxs.indexOf(data.data[0].type.value)][rarityIdxs.indexOf(featuredDump[0].toString().split("       ")[1])];//.toString();
@@ -72,13 +73,14 @@ xhrF1.onload = () => {
 }
 
 function continue1() {
-    newJson.featured2 = {}; newJson.featured2.itemGrants = featured[1];
+    newJson.featured2 = {}; newJson.featured2.itemGrants = [featured[1]];
     const xhrF2 = new XMLHttpRequest();
     xhrF2.open("GET", "https://fortnite-api.com/v2/cosmetics/br/search/all?id="+featured[1]);
     xhrF2.send();
     xhrF2.onload = () => {
         if (xhrF2.readyState == 4 && xhrF2.status == 200) {
             const data = JSON.parse(xhrF2.response);
+            newJson.featured2.itemGrants = [data.data[0].type.backendValue+":"+featured[1]];
             console.log(data.data[0].type.value);
             console.log(featuredDump[1].toString().split("       ")[1]);
             newJson.featured2.price = prices[typeIdxs.indexOf(data.data[0].type.value)][rarityIdxs.indexOf(featuredDump[1].toString().split("       ")[1])];//.toString();
@@ -97,22 +99,22 @@ newJson.daily5 = {};
 newJson.daily6 = {}; 
 function continue2(dailyIdx) {
     if (dailyIdx == 0) {
-        newJson.daily1 = {}; newJson.daily1.itemGrants = daily[dailyIdx];
+        newJson.daily1 = {}; newJson.daily1.itemGrants = [daily[dailyIdx]];
     }
     if (dailyIdx == 1) {
-        newJson.daily2 = {}; newJson.daily2.itemGrants = daily[dailyIdx];
+        newJson.daily2 = {}; newJson.daily2.itemGrants = [daily[dailyIdx]];
     }
     if (dailyIdx == 2) {
-        newJson.daily3 = {}; newJson.daily3.itemGrants = daily[dailyIdx];
+        newJson.daily3 = {}; newJson.daily3.itemGrants = [daily[dailyIdx]];
     }
     if (dailyIdx == 3) {
-        newJson.daily4 = {}; newJson.daily4.itemGrants = daily[dailyIdx];
+        newJson.daily4 = {}; newJson.daily4.itemGrants = [daily[dailyIdx]];
     }
     if (dailyIdx == 4) {
-        newJson.daily5 = {}; newJson.daily5.itemGrants = daily[dailyIdx];
+        newJson.daily5 = {}; newJson.daily5.itemGrants = [daily[dailyIdx]];
     }
     if (dailyIdx == 5) {
-        newJson.daily6 = {}; newJson.daily6.itemGrants = daily[dailyIdx];
+        newJson.daily6 = {}; newJson.daily6.itemGrants = [daily[dailyIdx]];
     }
     if (dailyIdx < 6) {
         const xhrF2 = new XMLHttpRequest();
@@ -127,16 +129,22 @@ function continue2(dailyIdx) {
                 switch (dailyIdx) {
                     case 0:
                         newJson.daily1.price = prices[typeIdxs.indexOf(data.data[0].type.value)][rarityIdxs.indexOf(dailyDump[dailyIdx].toString().split("       ")[2])];//.toString();
+                        newJson.daily1.itemGrants = [data.data[0].type.backendValue+":"+daily[dailyIdx]];
                     case 1:
                         newJson.daily2.price = prices[typeIdxs.indexOf(data.data[0].type.value)][rarityIdxs.indexOf(dailyDump[dailyIdx].toString().split("       ")[2])];//.toString();
+                        newJson.daily2.itemGrants = [data.data[0].type.backendValue+":"+daily[dailyIdx]];
                     case 2:
                         newJson.daily3.price = prices[typeIdxs.indexOf(data.data[0].type.value)][rarityIdxs.indexOf(dailyDump[dailyIdx].toString().split("       ")[2])];//.toString();
+                        newJson.daily3.itemGrants = [data.data[0].type.backendValue+":"+daily[dailyIdx]];
                     case 3:
                         newJson.daily4.price = prices[typeIdxs.indexOf(data.data[0].type.value)][rarityIdxs.indexOf(dailyDump[dailyIdx].toString().split("       ")[2])];//.toString();
+                        newJson.daily4.itemGrants = [data.data[0].type.backendValue+":"+daily[dailyIdx]];
                     case 4:
                         newJson.daily5.price = prices[typeIdxs.indexOf(data.data[0].type.value)][rarityIdxs.indexOf(dailyDump[dailyIdx].toString().split("       ")[2])];//.toString();
+                        newJson.daily5.itemGrants = [data.data[0].type.backendValue+":"+daily[dailyIdx]];
                     case 5:
                         newJson.daily6.price = prices[typeIdxs.indexOf(data.data[0].type.value)][rarityIdxs.indexOf(dailyDump[dailyIdx].toString().split("       ")[2])];//.toString();
+                        newJson.daily6.itemGrants = [data.data[0].type.backendValue+":"+daily[dailyIdx]];
                 }
                 console.log(newJson.featured2.price);
                 continue2(dailyIdx+=1);
@@ -145,6 +153,7 @@ function continue2(dailyIdx) {
             }
         }
     } else {
+        console.log("\n\n"+newJson.daily1.itemGrants);
         fs.writeFileSync("./Backend.json", JSON.stringify(newJson));
         console.log("Success! Dumped into Backend.json!");
     }

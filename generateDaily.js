@@ -21,8 +21,9 @@ function grabNonSkin() {
         console.log("No bueno");
         grabNonSkin(parsed);
     } else {
+        const rarity = randomOutfit.rarity.backendValue.toString().split("::")[1];
         console.log("Muy bueno: "+randomOutfit.id);
-        grabbedIDS.push(randomOutfit.id.toString()+"       "+typesOfC[randomType]);
+        grabbedIDS.push(randomOutfit.id.toString()+"       "+typesOfC[randomType]+"       "+rarity);
         amountGrabbed++;
         if (amountGrabbed < 6) {
             grabNonSkin(parsed);

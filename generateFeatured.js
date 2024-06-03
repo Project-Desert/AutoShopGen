@@ -7,6 +7,9 @@ const { json } = require('stream/consumers');
 let amountGrabbed = 0;
 let grabbedCIDS = [];
 let parsedOutfits = JSON.parse(fs.readFileSync('./dumpedCosmetics/outfits.json'));
+
+let prices = {}
+prices.outfit = [0, 800, 1200, 1500, 2000];
 // console.log(parsedOutfits.data[0]);
 grabSkin(parsedOutfits);
 
@@ -19,7 +22,8 @@ function grabSkin(parsed) {
         grabSkin(parsed);
     } else {
         console.log("Muy bueno: "+randomOutfit.id);
-        grabbedCIDS.push(randomOutfit.id.toString());
+        const rarity = randomOutfit.rarity.backendValue.toString().split("::")[1];
+        grabbedCIDS.push(randomOutfit.id.toString()+"       "+rarity);
         amountGrabbed++;
         if (amountGrabbed < 2) {
             grabSkin(parsed);

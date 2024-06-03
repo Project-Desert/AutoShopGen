@@ -100,19 +100,19 @@ function continue2(dailyIdx) {
         newJson.daily1 = {}; newJson.daily1.itemGrants = daily[dailyIdx];
     }
     if (dailyIdx == 1) {
-        newJson.daily2 = {}; newJson.daily1.itemGrants = daily[dailyIdx];
+        newJson.daily2 = {}; newJson.daily2.itemGrants = daily[dailyIdx];
     }
     if (dailyIdx == 2) {
-        newJson.daily3 = {}; newJson.daily1.itemGrants = daily[dailyIdx];
+        newJson.daily3 = {}; newJson.daily3.itemGrants = daily[dailyIdx];
     }
     if (dailyIdx == 3) {
-        newJson.daily4 = {}; newJson.daily1.itemGrants = daily[dailyIdx];
+        newJson.daily4 = {}; newJson.daily4.itemGrants = daily[dailyIdx];
     }
     if (dailyIdx == 4) {
-        newJson.daily5 = {}; newJson.daily1.itemGrants = daily[dailyIdx];
+        newJson.daily5 = {}; newJson.daily5.itemGrants = daily[dailyIdx];
     }
     if (dailyIdx == 5) {
-        newJson.daily6 = {}; newJson.daily1.itemGrants = daily[dailyIdx];
+        newJson.daily6 = {}; newJson.daily6.itemGrants = daily[dailyIdx];
     }
     if (dailyIdx < 6) {
         const xhrF2 = new XMLHttpRequest();
